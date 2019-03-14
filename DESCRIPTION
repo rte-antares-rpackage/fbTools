@@ -22,4 +22,5 @@ Imports:
   scales,
   testthat
 RoxygenNote: 6.1.1
-Suggests: testthat
+Suggests: testthat,
+    covr
