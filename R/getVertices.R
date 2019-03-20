@@ -10,7 +10,7 @@
 #' }
 #' @import vertexenum
 #' @export
-getVertices <- function(PTDF,  ctrdel = "NL"){
+getVertices <- function(PTDF,  ctrdel = NULL){
   PTDF <- data.table(PTDF)
 
   DDout <- sapply(unique(PTDF$timestamp), function(X){
@@ -24,14 +24,21 @@ getVertices <- function(PTDF,  ctrdel = "NL"){
 }
 
 
-.foundVertices <- function(PTDF, ctrdel = "NL"){
+.foundVertices <- function(PTDF, ctrdel = NULL){
 
   ctry <- names(PTDF)[grep("ptdf", names(PTDF))]
+  if(!is.null(ctrdel))
+  {
+    
+
   ctrdel <- paste0("ptdf", ctrdel)
   ctrnodel <- ctry[ctry!=ctrdel]
 
   for(i in ctrnodel){
     PTDF[[i]] <- PTDF[[i]] - PTDF[[ctrdel]]
+  }
+  }else{
+    ctrnodel = ctry
   }
   vertices <- vertexenum::enumerate.vertices(as.matrix(PTDF[,.SD, .SDcols = ctrnodel]), PTDF$ram)
   vertices <- data.table(vertices)

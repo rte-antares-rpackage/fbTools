@@ -3,6 +3,7 @@ context("Function getVertices")
 test_that("getVertices", {
   library(data.table)
   library(testthat)
+  library(parallel)
 
   DT <- getCnesFb(list.files(system.file("testdata/FB",package = "fbTools"),
                              recursive = TRUE, full.names = TRUE), 2)

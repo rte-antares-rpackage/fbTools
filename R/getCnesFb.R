@@ -20,10 +20,10 @@ getCnesFb <- function(file, nbcl, sizechunk = 10)
 
 
     cl <- makeCluster(nbcl)
+    clusterEvalQ(cl, library("XML"))
+    clusterEvalQ(cl, library("data.table"))
     end <- rbindlist(parSapply(cl, ffl, function(fl){
-      library(XML)
-      library(data.table)
-
+      
       PLAN <- xmlParse(fl)
 
 
