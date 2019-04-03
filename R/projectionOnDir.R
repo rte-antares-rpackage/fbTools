@@ -3,6 +3,7 @@
 #' 
 #' @param PT {data.table} Point for direction to project
 #' @param PTDF {data.frame | data.table}
+#' @param step {numeric} manimum step (MW)
 #'
 #' @examples
 #' 
@@ -16,8 +17,8 @@
 #' }
 #'
 #' @export
-getProjPT <- function(PT, PTDF){
-  coefD <- PT/(max(abs(PT))/5)
+getProjPT <- function(PT, PTDF, step = 5){
+  coefD <- PT/(max(abs(PT)))*step
   CP2 <- coefD
   k <- rep(0, nrow(PTDF))
   while(all(k<PTDF$ram)){

@@ -4,12 +4,14 @@
 \alias{getProjPT}
 \title{Project on direction}
 \usage{
-getProjPT(PT, PTDF)
+getProjPT(PT, PTDF, step = 5)
 }
 \arguments{
 \item{PT}{{data.table} Point for direction to project}
 
 \item{PTDF}{{data.frame | data.table}}
+
+\item{step}{{numeric} manimum step (MW)}
 }
 \description{
 Project on direction
