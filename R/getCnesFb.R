@@ -18,14 +18,12 @@ getCnesFb <- function(file, nbcl, sizechunk = 10)
 
   oud <- rbindlist(lapply(file, function(ffl){
 
-
     cl <- makeCluster(nbcl)
     clusterEvalQ(cl, library("XML"))
     clusterEvalQ(cl, library("data.table"))
     end <- rbindlist(parSapply(cl, ffl, function(fl){
       
       PLAN <- xmlParse(fl)
-
 
       ns <- c("a" = xmlNamespaceDefinitions(PLAN, simplify = TRUE))
 

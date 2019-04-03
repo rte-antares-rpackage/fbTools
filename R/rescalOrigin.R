@@ -2,15 +2,14 @@
 #'
 #' @param PTDF {data.frame | data.table}
 #' @param PT {data.table} Point for rescale.
-#'
-#' \dontrun{
 #' 
+#' @examples
+#' \dontrun{
 #'  PT = data.table()
 #'  PT$AT <- PT$DE <- PT$FR <- PT$NL <- 0
 #'  PT$BE <- 1
 #'  PT$timestamp  <- '2018-03-03 15:00:00'
 #'  PROJ <- rescalOrigin(PTDF, PT)
-#' 
 #' }
 #'
 #'

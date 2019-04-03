@@ -7,7 +7,7 @@
 #' @examples
 #' \dontrun{
 #' 
-#'    refProf = getRefProgs("D:/Users/titorobe/Desktop/CNESdata/Refprogs/22XCORESO------S_17XTSO-CS------W_CWE-FB-D2CF-100_20180903F10101.xml")
+#'    refProf = getRefProgs("REFP.xml")
 #'    computePn(refProf, c("BE", "NL", "DE", "FR", "APG"), "CWEP")
 #'    
 #' }

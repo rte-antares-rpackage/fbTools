@@ -20,7 +20,8 @@ Add a PTDF to a data.table
 }
 \examples{
 \dontrun{
-PLAN2 <- addConstrain(PLAN, ctr = list(AT = 0, BE = 1, DE = 0, FR = 0, NL = 0),
+PLAN2 <- addConstrain(PLAN,
+ctr = list(AT = 0, BE = 1, DE = 0, FR = 0, NL = 0),
 ram = -1000 )
 }
 
