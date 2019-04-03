@@ -1,6 +1,6 @@
 #' extractPnCnes from net position data
 #'
-#' @param xmlLt {character} long time file
+#' @param xmlLt {character} long time file(s)
 #'
 #' @export
 getLtPos <- function(xmlLt){

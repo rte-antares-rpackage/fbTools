@@ -7,7 +7,7 @@
 getLtPos(xmlLt)
 }
 \arguments{
-\item{xmlLt}{{character} long time file}
+\item{xmlLt}{{character} long time file(s)}
 }
 \description{
 extractPnCnes from net position data

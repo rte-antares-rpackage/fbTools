@@ -4,26 +4,29 @@
 #'
 #' @export
 getPnCnes <- function(xmlPn){
-  xmlPn <- xmlToList(xmlParse(xmlPn))
-  PN <- Reduce(merge, lapply(xmlPn[names(xmlPn)=="AccountTimeSeries"], function(ZZ){
-    areaName <- .ctrlAreaName(ZZ$Area["v"])
-    tsPer <- ZZ$Period
-    timeInt <- .getTime(tsPer$TimeInterval)
-
-    extr <- Reduce(rbind, lapply(tsPer[names(tsPer)=="AccountInterval"], function(X){
-      inD <- as.numeric(X$InQty)
-      outD <- as.numeric(X$OutQty)
-      c(ifelse(inD != 0, -inD, outD), as.numeric(X$Pos))
+  rbindlist(sapply(xmlPn, function(X){
+    
+    X <- xmlToList(xmlParse(X))
+    PN <- Reduce(merge, lapply(X[names(X)=="AccountTimeSeries"], function(ZZ){
+      areaName <- .ctrlAreaName(ZZ$Area["v"])
+      tsPer <- ZZ$Period
+      timeInt <- .getTime(tsPer$TimeInterval)
+      
+      extr <- Reduce(rbind, lapply(tsPer[names(tsPer)=="AccountInterval"], function(X){
+        inD <- as.numeric(X$InQty)
+        outD <- as.numeric(X$OutQty)
+        c(ifelse(inD != 0, -inD, outD), as.numeric(X$Pos))
+      }))
+      
+      dt <- data.table(timestamp = timeInt, CT = extr[,1], hh = extr[,2])
+      dt$timestamp <- dt$timestamp + (dt$hh-1)*3600
+      dt[, hh := NULL]
+      setnames(dt, "CT", areaName)
+      dt
     }))
-
-    dt <- data.table(timestamp = timeInt, CT = extr[,1], hh = extr[,2])
-    dt$timestamp <- dt$timestamp + (dt$hh-1)*3600
-    dt[, hh := NULL]
-    setnames(dt, "CT", areaName)
-    dt
-  }))
-  ColO <- order(names(PN)[2:ncol(PN)]) + 1
-  PN[, .SD, .SDcols = c(1, ColO)]
+    ColO <- order(names(PN)[2:ncol(PN)]) + 1
+    PN[, .SD, .SDcols = c(1, ColO)]
+  }, simplify = FALSE))
 }
 
 
@@ -35,5 +38,5 @@ getPnCnes <- function(xmlPn){
   if(area == "10YAT-APG------L")return("AT")
   if(area == "10YNL----------L")return("NL")
   return("DE")
-
+  
 }
