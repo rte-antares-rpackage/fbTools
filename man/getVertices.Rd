@@ -4,7 +4,7 @@
 \alias{getVertices}
 \title{vertices from PTDF data}
 \usage{
-getVertices(PTDF, ctrdel = "NL")
+getVertices(PTDF, ctrdel = NULL)
 }
 \arguments{
 \item{PTDF}{{data.frame | data.table}}
