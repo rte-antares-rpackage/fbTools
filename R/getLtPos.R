@@ -1,9 +1,9 @@
-#' extractPnCnes from net position data
+#' getLTNom from net position data
 #'
-#' @param xmlLt {character} long time file(s)
+#' @param xmlLt {character} long time file
 #'
 #' @export
-getLtPos <- function(xmlLt){
+getLTNom <- function(xmlLt){
   xmlLt <- xmlToList(xmlParse(xmlLt))
 
   Reduce(merge, lapply(xmlLt[names(xmlLt)=="ScheduleTimeSeries"], function(ser){

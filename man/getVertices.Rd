@@ -4,10 +4,10 @@
 \alias{getVertices}
 \title{vertices from PTDF data}
 \usage{
-getVertices(PTDF, ctrdel = NULL)
+getVertices(domain, ctrdel = NULL)
 }
 \arguments{
-\item{PTDF}{{data.frame | data.table}}
+\item{domain}{{data.frame | data.table}}
 
 \item{ctrdel}{{character} name of country deleted}
 }
@@ -16,6 +16,6 @@ vertices from PTDF data
 }
 \examples{
 \dontrun{
-  PTDFv <- getVertices(PTDF, "NL")
+  PTDFv <- getVertices(domain, "NL")
 }
 }

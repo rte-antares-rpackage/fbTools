@@ -1,25 +1,25 @@
 #' Extract ptdf from cnes XML
 #'
-#' @param LINK {data.table} LINK data.table, first column is timestamp others are area1-area2
+#' @param bilateralExchanges {data.table} bilateralExchanges data.table, first column is timestamp others are area1-area2
 #' @param ctry {character} areas for compute net position.
 #' @param name {character} prefix for area.
 #'
 #' @examples
 #' \dontrun{
 #' 
-#'    refProf = getRefProgs("REFP.xml")
-#'    computePn(refProf, c("BE", "NL", "DE", "FR", "APG"), "CWEP")
+#'    refProf = getRefProgs("D:/Users/titorobe/Desktop/CNESdata/Refprogs/22XCORESO------S_17XTSO-CS------W_CWE-FB-D2CF-100_20180903F10101.xml")
+#'    computeNPFromBilateralExchanges(refProf, c("BE", "NL", "DE", "FR", "APG"), "CWEP")
 #'    
 #' }
 #'
 #' @import XML data.table
 #' @export
-computePn <- function(LINK, ctry, name = ""){
+computeNPFromBilateralExchanges <- function(bilateralExchanges, ctry, name = ""){
   allCt <- sapply(ctry, function(ct){
-    ddn <- unlist(lapply(strsplit(  names(LINK),"-"), function(X){
+    ddn <- unlist(lapply(strsplit(  names(bilateralExchanges),"-"), function(X){
       any(ct==X) & any(ctry%in%X)
     }))
-    LLCT <- LINK[,.SD, .SDcols =   c(1, which(ddn))]
+    LLCT <- bilateralExchanges[,.SD, .SDcols =   c(1, which(ddn))]
     LKout <- lapply(strsplit(names(LLCT),"-"), function(X){
       if(X[1] == "timestamp")return(LLCT[, .SD, .SDcols = X])
       if(X[1]==ct)return(LLCT[, .SD, .SDcols = paste(X, collapse = "-")])

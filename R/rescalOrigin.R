@@ -1,7 +1,7 @@
 #' Rescale data
 #'
-#' @param PTDF {data.frame | data.table}
-#' @param PT {data.table} Point for rescale.
+#' @param domain {data.frame | data.table}
+#' @param point {data.table} Point for rescale.
 #' 
 #' @examples
 #' \dontrun{
@@ -9,27 +9,27 @@
 #'  PT$AT <- PT$DE <- PT$FR <- PT$NL <- 0
 #'  PT$BE <- 1
 #'  PT$timestamp  <- '2018-03-03 15:00:00'
-#'  PROJ <- rescalOrigin(PTDF, PT)
+#'  PROJ <- shiftOriginDomain(domain, PT)
 #' }
 #'
 #'
 #' @export
-rescalOrigin <- function(PTDF, PT){
-  CT <- names(PT)
+shiftOriginDomain <- function(domain, point){
+  CT <- names(point)
   CT <- CT[!CT=="timestamp"]
 
-  if(!all(unique(PTDF$timestamp)%in%PT$timestamp)){
+  if(!all(unique(domain$timestamp)%in%point$timestamp)){
     stop("Miss timestamp in CT")
   }
 
-  PTDF <- merge(PT, PTDF, by = "timestamp")
-  PTDF$newRam = PTDF$ram
+  domain <- merge(point, domain, by = "timestamp")
+  domain$newRam = domain$ram
   for(i in CT){
 
-    PTDF$newRam <- PTDF$newRam - unlist(PTDF[, .SD, .SDcols = i]*PTDF[, .SD, .SDcols = paste0("ptdf",i)])
-    PTDF[, eval(i) := NULL]
+    domain$newRam <- domain$newRam - unlist(domain[, .SD, .SDcols = i]*domain[, .SD, .SDcols = paste0("ptdf",i)])
+    domain[, eval(i) := NULL]
   }
-  PTDF$ram <- PTDF$newRam
-  PTDF[,newRam := NULL]
-  PTDF
+  domain$ram <- domain$newRam
+  domain[,newRam := NULL]
+  domain
 }

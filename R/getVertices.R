@@ -1,20 +1,20 @@
 #' vertices from PTDF data
 #'
-#' @param PTDF {data.frame | data.table}
+#' @param domain {data.frame | data.table}
 #' @param ctrdel {character} name of country deleted
 #'
 #'
 #' @examples
 #' \dontrun{
-#'   PTDFv <- getVertices(PTDF, "NL")
+#'   PTDFv <- getVertices(domain, "NL")
 #' }
 #' @import vertexenum
 #' @export
-getVertices <- function(PTDF,  ctrdel = NULL){
-  PTDF <- data.table(PTDF)
+getVertices <- function(domain,  ctrdel = NULL){
+  domain <- data.table(domain)
 
-  DDout <- sapply(unique(PTDF$timestamp), function(X){
-    DD <- .foundVertices(PTDF[timestamp == X], ctrdel = ctrdel)
+  DDout <- sapply(unique(domain$timestamp), function(X){
+    DD <- .foundVertices(domain[timestamp == X], ctrdel = ctrdel)
     DD$timestamp <- X
     DD
   }, simplify = FALSE)

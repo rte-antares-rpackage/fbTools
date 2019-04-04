@@ -1,11 +1,11 @@
-context("Function getCnesFb")
+context("Function getFbDomain")
 
-test_that("getCnesFb", {
+test_that("getFbDomain", {
   library(data.table)
   library(testthat)
   library(parallel)
 
-  DT <- getCnesFb(list.files(system.file("testdata/FB",package = "fbTools"),
+  DT <- getFbDomain(list.files(system.file("testdata/FB",package = "fbTools"),
                        recursive = TRUE, full.names = TRUE), 2)
 
   expect_true("data.table"%in%class(DT))

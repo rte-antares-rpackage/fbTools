@@ -1,10 +1,10 @@
-#' getPnCnes from net position data
+#' getNP from net position data
 #'
-#' @param xmlPn {character} net position file(s)
+#' @param file {character} net position file(s)
 #'
 #' @export
-getPnCnes <- function(xmlPn){
-  rbindlist(sapply(xmlPn, function(X){
+getNP <- function(file){
+  rbindlist(sapply(file, function(X){
     
     X <- xmlToList(xmlParse(X))
     PN <- Reduce(merge, lapply(X[names(X)=="AccountTimeSeries"], function(ZZ){

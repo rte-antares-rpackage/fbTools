@@ -6,12 +6,12 @@
 #'
 #' @examples
 #' \dontrun{
-#'    getCnesFb("fb.XML", 4 )
+#'    getFbDomain("fb.XML", 4 )
 #' }
 #'
 #' @import XML data.table
 #' @export
-getCnesFb <- function(file, nbcl, sizechunk = 10)
+getFbDomain <- function(file, nbcl = 4, sizechunk = 10)
 {
 
   file <- split(file, ceiling(seq_along(file)/(sizechunk)))
@@ -70,9 +70,8 @@ getCnesFb <- function(file, nbcl, sizechunk = 10)
       fref2 <- getNodeSet(PLAN, '/a:FlowBasedDomainDocument/a:FlowBasedDomainTimeSeries/a:Period/a:Interval/a:FlowBasedDomain/a:constraintResults/a:constraintResult/a:criticalBranch/a:fRef', ns,
                           addFinalizer = FALSE)
       fref <- as.numeric(xmlSApply(fref2, xmlValue))
-      endAll[, fref := fref]
+      endAll[, fRef := fref]
       rm(fref2)
-
 
       amr <- getNodeSet(PLAN, '/a:FlowBasedDomainDocument/a:FlowBasedDomainTimeSeries/a:Period/a:Interval/a:FlowBasedDomain/a:constraintResults/a:constraintResult/a:criticalBranch/a:amr', ns,
                           addFinalizer = FALSE)
