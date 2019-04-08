@@ -19,7 +19,7 @@ getVertices <- function(domain,  ctrdel = NULL){
     DD
   }, simplify = FALSE)
   end <- rbindlist(DDout)
-
+  names(end) <- gsub(pattern = "ptdf", "NP_", names(end))
   end
 }
 

@@ -10,11 +10,11 @@
 #'
 #' @import   XML httpuv httr data.table pipeR geometry rgl scales
 #' @export
-hullPlot <- function(df, grouping, country = c("DE", "BE", "FR"), legend = TRUE, alpha = 1){
+hullPlot <- function(df, grouping, country = c("NP_DE", "NP_BE", "NP_FR"), legend = TRUE, alpha = 1){
   df <- data.frame(df)
   # requires that the "grouping" column is printed as per the name of the column
   # you want separate hulls for
-  country <- paste0("ptdf",country )
+  #country <- paste0("ptdf",country )
 
   allSites <- sort(as.vector(unique(df[[grouping]])))
   matList <- list()

@@ -25,7 +25,9 @@ getNP <- function(file){
       dt
     }))
     ColO <- order(names(PN)[2:ncol(PN)]) + 1
-    PN[, .SD, .SDcols = c(1, ColO)]
+    PN <- PN[, .SD, .SDcols = c(1, ColO)]
+    names(PN) <- paste("NP_",names(PN))
+    PN
   }, simplify = FALSE))
 }
 

@@ -4,8 +4,8 @@
 \alias{hullPlot}
 \title{3D flowbased plot}
 \usage{
-hullPlot(df, grouping, country = c("DE", "BE", "FR"), legend = TRUE,
-  alpha = 1)
+hullPlot(df, grouping, country = c("NP_DE", "NP_BE", "NP_FR"),
+  legend = TRUE, alpha = 1)
 }
 \arguments{
 \item{df}{{data.frame} vertices}

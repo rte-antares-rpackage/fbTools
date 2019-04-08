@@ -6,7 +6,7 @@
 getLTNom <- function(xmlLt){
   xmlLt <- xmlToList(xmlParse(xmlLt))
 
-  Reduce(merge, lapply(xmlLt[names(xmlLt)=="ScheduleTimeSeries"], function(ser){
+  DD <- Reduce(merge, lapply(xmlLt[names(xmlLt)=="ScheduleTimeSeries"], function(ser){
     areaNameIn <- .ctrlAreaName(ser$InArea["v"])
     areaNameOut <- .ctrlAreaName(ser$OutArea["v"])
     lk <- paste0(areaNameOut, "-", areaNameIn)
@@ -23,4 +23,6 @@ getLTNom <- function(xmlLt){
   }
   )
   )
+  DD
+  
 }

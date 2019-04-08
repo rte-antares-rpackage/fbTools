@@ -17,8 +17,8 @@ Rescale data
 \examples{
 \dontrun{
  PT = data.table()
- PT$AT <- PT$DE <- PT$FR <- PT$NL <- 0
- PT$BE <- 1
+ PT$NP_AT <- PT$NP_DE <- PT$NP_FR <- PT$NP_NL <- 0
+ PT$NP_BE <- 1
  PT$timestamp  <- '2018-03-03 15:00:00'
  PROJ <- shiftOriginDomain(domain, PT)
 }
