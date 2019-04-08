@@ -26,7 +26,7 @@ getNP <- function(file){
     }))
     ColO <- order(names(PN)[2:ncol(PN)]) + 1
     PN <- PN[, .SD, .SDcols = c(1, ColO)]
-    names(PN) <- paste("NP_",names(PN))
+    names(PN)[which(names(PN) != "timestamp")] <- paste0("NP_",names(PN)[which(names(PN) != "timestamp")] )
     PN
   }, simplify = FALSE))
 }
