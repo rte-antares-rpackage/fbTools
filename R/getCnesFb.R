@@ -73,10 +73,11 @@ getFbDomain <- function(file, nbcl = 4, sizechunk = 10)
       endAll[, fRef := fref]
       rm(fref2)
 
-      amr <- getNodeSet(PLAN, '/a:FlowBasedDomainDocument/a:FlowBasedDomainTimeSeries/a:Period/a:Interval/a:FlowBasedDomain/a:constraintResults/a:constraintResult/a:criticalBranch/a:amr', ns,
-                          addFinalizer = FALSE)
-      amr <- as.numeric(xmlSApply(amr, xmlValue))
-      endAll[, amr := amr]
+      
+      # amr <- getNodeSet(PLAN, '/a:FlowBasedDomainDocument/a:FlowBasedDomainTimeSeries/a:Period/a:Interval/a:FlowBasedDomain/a:constraintResults/a:constraintResult/a:criticalBranch/a:amr', ns,
+      #                     addFinalizer = FALSE)
+      # amr <- as.numeric(xmlSApply(amr, xmlValue))
+      # endAll[, amr := amr]
 
       ltaMargin <- getNodeSet(PLAN, '/a:FlowBasedDomainDocument/a:FlowBasedDomainTimeSeries/a:Period/a:Interval/a:FlowBasedDomain/a:constraintResults/a:constraintResult/a:criticalBranch/a:ltaMargin', ns,
                         addFinalizer = FALSE)
